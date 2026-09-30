@@ -1,0 +1,12 @@
+identifier: nice_nano
+name: nice!nano
+type: mcu
+arch: arm
+toolchain:
+  - zephyr
+  - gnuarmemb
+supported:
+  - ble
+  - gpio
+  - uart
+

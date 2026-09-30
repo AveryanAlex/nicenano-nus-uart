@@ -1,0 +1,36 @@
+# SPDX-License-Identifier: LicenseRef-Nordic-5-Clause
+
+source "Kconfig.zephyr"
+
+menu "nice!nano NUS UART bridge"
+
+config NUS_UART_BUFFER_SIZE
+	int "UART buffer size"
+	range 20 244
+	default 244
+	help
+	  Maximum number of bytes kept in each bridge buffer.
+
+config NUS_UART_IDLE_TIMEOUT_US
+	int "UART receive idle timeout in microseconds"
+	range 100 1000000
+	default 10000
+	help
+	  A partial physical UART burst is forwarded after this idle period.
+
+config NUS_UART_PAIRING
+	bool "Require authenticated pairing for NUS"
+	default n
+	help
+	  Require an encrypted, authenticated BLE connection using a passkey and
+	  retain client bonds.
+
+config NUS_UART_PASSKEY
+	int "Six-digit pairing passkey"
+	depends on NUS_UART_PAIRING
+	range 0 999999
+	default 0
+	help
+	  Passkey entered on the central device during first pairing.
+
+endmenu
